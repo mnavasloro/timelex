@@ -1,0 +1,73 @@
+<center><img src="img/lawordate.png" width="60%" ></center>
+<style>
+body {margin:0;}
+
+.icon-bar {
+  width: 40%;
+  background-color: white;
+  overflow: auto;
+  color: grey;
+}
+
+.icon-bar a {
+  float: left;
+  width: 25%;
+  text-align: center;
+  padding: 12px 0;
+  transition: all 0.3s ease;
+  color: grey;
+  font-size: 36px;
+}
+
+.icon-bar a:hover {
+  color: black;
+}
+
+.active {
+  background-color: #4CAF50;
+}
+</style>
+
+<center><div class="icon-bar">
+  <a href="http://legalwhen.appspot.com/" target="_blank" data-toggle="tooltip" title="demo"><i class="fas fa-laptop-code"></i></a> 
+  <a href="https://github.com/mnavasloro/LawORDate" target="_blank" data-toggle="tooltip" title="repository"><i class="fab fa-github" ></i></a> 
+  <a href="http://ceur-ws.org/Vol-2049/04paper.pdf" target="_blank" data-toggle="tooltip" title="paper"><i class="fa fa-scroll"></i></a> 
+  <a href="https://www.slideshare.net/MaraNavasLoro/lawordate-a-service-for-distinguishing-legal-references-from-temporal-expressions" target="_blank" data-toggle="tooltip" title="slides"><i class="fab fa-slideshare"></i></a>
+  
+</div></center>
+
+<script>
+$(document).ready(function(){
+  $('[data-toggle="tooltip"]').tooltip();   
+});
+</script>
+
+<br>
+<h2>What is it?</h2>
+<p>lawORdate is a tool that cleans legal references with a date form from text documents. It addresses an important problem when processing legal documents from the temporal perspective, since common legal references in Spanish tend to include dates or patterns that can be misleading to temporal taggers. For instance, in the following excerpt:
+
+ <blockquote style="text-align: center;">"<i>... creado via el Real Decreto <strong>2093/2008</strong>, de <strong>19 de diciembre</strong>. Ha sido actualizado por ultima vez el <u><strong>13 de agosto de 2017</strong></u>.</i>"</blockquote>
+
+
+most temporal taggers would find the three dates in bold. Nevertheless, the first expression is not a date (despite of following a date-ish pattern) and expression number two is a date but does not belong to the narrative of the text (is part of a legal reference), so they should not be tagged. Therefore, the only one that should be tagged is the last one (the one underlined).</p>
+
+<h2>How it works?</h2>
+
+
+
+
+<p>The scheme below illustrates how lawORdate works.</p>
+
+<center><img src="img/fig1.png" width="80%" ></center>
+
+<p>First, a text with legal references is sent to the service. Then it finds all the misleading legal references that could affect to the precision of a temporal tagger and replaces them with inoquous expressions, storing the original references for further restoring. The output of this first step is to be used in a temporal tagger. Then, the output of the tagger (in TimeML) is sent back to lawORdate, that restores the original legal references. We therefore obtain the original text, but tagged without the interference of any legal references in it.</p>
+
+<h2>How to cite it?</h2>
+
+
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.10.1/css/all.css" integrity="sha384-wxqG4glGB3nlqX0bi23nmgwCSjWIW13BdLUEYC4VIMehfbcro/ATkyDsF/AbIOVe" crossorigin="anonymous">
+
+
+
+<blockquote><p>Navas-Loro, M. (2017).&nbsp;<em>LawORDate: a Service for Distinguishing Legal References from Temporal Expressions</em>. Proceedings of TeReCom 2017: Workshop on Technologies for Regulatory Compliance at JURIX (TeReCom 2017)</p></blockquote>
