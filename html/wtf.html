@@ -46,23 +46,20 @@ $(document).ready(function(){
 
 <br>
 <h2>What is it?</h2>
-<p>lawORdate is a tool that cleans legal references with a date form from text documents. It addresses an important problem when processing legal documents from the temporal perspective, since common legal references in Spanish tend to include dates or patterns that can be misleading to temporal taggers. For instance, in the following excerpt:
+<p>WhenTheFact is a tool that extracts relevant events from judgments from European Courts, namely from the European Court of Human Rights and the European Court of Justice. Below is a screenshot of the demo.</p>
 
- <blockquote style="text-align: center;">"<i>... creado via el Real Decreto <strong>2093/2008</strong>, de <strong>19 de diciembre</strong>. Ha sido actualizado por ultima vez el <u><strong>13 de agosto de 2017</strong></u>.</i>"</blockquote>
-
-
-most temporal taggers would find the three dates in bold. Nevertheless, the first expression is not a date (despite of following a date-ish pattern) and expression number two is a date but does not belong to the narrative of the text (is part of a legal reference), so they should not be tagged. Therefore, the only one that should be tagged is the last one (the one underlined).</p>
+<center><img src="img/ExampleWTF.png" width="80%" height="170"></center>
 
 <h2>How it works?</h2>
 
 
 
 
-<p>The scheme below illustrates how lawORdate works.</p>
+<p>The scheme below illustrates how WhenTheFact works.</p>
 
-<center><img src="img/fig3.png" width="80%" ></center>
+<center><img src="img/pseudocodeWhenTheFact.png" width="80%" ></center>
 
-<p>First, a text with legal references is sent to the service. Then it finds all the misleading legal references that could affect to the precision of a temporal tagger and replaces them with inoquous expressions, storing the original references for further restoring. The output of this first step is to be used in a temporal tagger. Then, the output of the tagger (in TimeML) is sent back to lawORdate, that restores the original legal references. We therefore obtain the original text, but tagged without the interference of any legal references in it.</p>
+<p>Once the url or the ID of judgment to process is submitted, the system retrieves it from the source and analyzes its structure, detecting the relevant sections in it. Then, the sentences from these parts of the documents are processed in order to find the dates in it. Afterwards, the relevant events are searched and linkked to their happening dates, if any. Finally, they are marked up in the text, and a timeline with the most relevant events that the user can use to navigate through the document is created.</p>
 
 <h2>How to cite it?</h2>
 
@@ -72,4 +69,4 @@ most temporal taggers would find the three dates in bold. Nevertheless, the firs
 
 
 
-<blockquote><p>Filtz, E., Navas-Loro, M., Santos, C., Polleres, A., Kirrane,<em>&nbsp;<a href="http://ebooks.iospress.nl/volumearticle/56160">Events Matter: Extraction of Events from Court Decisions</a>.&nbsp;</em>In: Serena Villata, Jakub Harašta, Petr Křemen (eds) Frontiers in Artificial Intelligence and Applications, vol 334.&nbsp; IOS Press. JURIX 2020. pp. 33 – 42. doi: 10.3233/FAIA200847.</p></blockquote>
+<blockquote><p>Filtz, E., Navas-Loro, M., Santos, C., Polleres, A., Kirrane,<em>&nbsp;<a href="http://ebooks.iospress.nl/volumearticle/56160" target="_blank">Events Matter: Extraction of Events from Court Decisions</a>.&nbsp;</em>In: Serena Villata, Jakub Harašta, Petr Křemen (eds) Frontiers in Artificial Intelligence and Applications, vol 334.&nbsp; IOS Press. JURIX 2020. pp. 33 – 42. doi: 10.3233/FAIA200847.</p></blockquote>

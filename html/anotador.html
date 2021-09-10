@@ -50,23 +50,30 @@ $(document).ready(function(){
 
 <br>
 <h2>What is it?</h2>
-<p>lawORdate is a tool that cleans legal references with a date form from text documents. It addresses an important problem when processing legal documents from the temporal perspective, since common legal references in Spanish tend to include dates or patterns that can be misleading to temporal taggers. For instance, in the following excerpt:
+<p>Añotador is a temporal tagger that annotates temporal expressions (DATEs, TIMEs, SETs, DURATIONs and optionally INTERVALs) in texts. It takes a text as an input and returns it as a JSON or a TimeML document. There are two different domains to choose: "General" (or Standard), that follows the TimeML standard, and "Legal", that includes specific domain considerations and tags, such as finding INTERVALS or normalizing differently some temporal expressions. This tool works for English and Spanish, altohught it is optimized for the Spanish language. An example of annotation can be found below:</p>
+<div style="margin-left: 2em;">  
+								<samp style="font-weight: bold; background-color:#e6eeff">&lt;TIMEX3 tid="t1" type="DATE" value="2019-04-09"&gt;</samp>Today<samp style="font-weight: bold; background-color:#e6eeff">&lt;/TIMEX3&gt;</samp> is <samp style="font-weight: bold; background-color:#e6eeff">&lt;TIMEX3 tid="t2" </samp><samp style="font-weight: bold; background-color:#e6eeff"> type="DATE" value="2019-10-03"&gt;</samp>3 of October<samp style="font-weight: bold; background-color:#e6eeff">&lt;/TIMEX3&gt;</samp><br>
 
- <blockquote style="text-align: center;">"<i>... creado via el Real Decreto <strong>2093/2008</strong>, de <strong>19 de diciembre</strong>. Ha sido actualizado por ultima vez el <u><strong>13 de agosto de 2017</strong></u>.</i>"</blockquote>
+<br>
 
+We work <samp style="font-weight: bold; background-color:#d6f5f5">&lt;TIMEX3 tid="t1" type="SET" value="P1W" freq="02X"&gt;</samp>twice a week<samp style="font-weight: bold; background-color:#d6f5f5">&lt;/TIMEX3&gt;</samp><br>
+	<br>
 
-most temporal taggers would find the three dates in bold. Nevertheless, the first expression is not a date (despite of following a date-ish pattern) and expression number two is a date but does not belong to the narrative of the text (is part of a legal reference), so they should not be tagged. Therefore, the only one that should be tagged is the last one (the one underlined).</p>
+<br>
+<br>
+</div>
 
 <h2>How it works?</h2>
 
 
 
 
-<p>The scheme below illustrates how lawORdate works.</p>
+<p>The scheme below illustrates how Añotador works.</p>
 
 <center><img src="img/fig2.png" width="80%" ></center>
 
-<p>First, a text with legal references is sent to the service. Then it finds all the misleading legal references that could affect to the precision of a temporal tagger and replaces them with inoquous expressions, storing the original references for further restoring. The output of this first step is to be used in a temporal tagger. Then, the output of the tagger (in TimeML) is sent back to lawORdate, that restores the original legal references. We therefore obtain the original text, but tagged without the interference of any legal references in it.</p>
+<p>First, we get as input the text and the anchor date (if none, we assume the current day) and we preprocess the text (lemmatization, POS tagging...). We then apply different types of rules in order to find the temporal expressions. Afterwards, we normalize the different types of expressions extracted by the rules. TO do so, we use as reference information from surounding expressions or the anchor date provided by the user. Finally, we return the text annotated in the requested format.
+.</p>
 
 <h2>How to cite it?</h2>
 
@@ -76,4 +83,4 @@ most temporal taggers would find the three dates in bold. Nevertheless, the firs
 
 
 
-<blockquote><p>Navas-Loro, M., &nbsp;Rodríguez-Doncel, V. (2020). <a href="https://doi.org/10.3233/JIFS-179865"><em>Annotador: a Temporal Tagger for Spanish</em></a>. Journal of Intelligent &amp; Fuzzy Systems 39 (2020) 1979-1991, (2) doi:10.3233/JIFS-179865.</p></blockquote>
+<blockquote><p>Navas-Loro, M., &nbsp;Rodríguez-Doncel, V. (2020). <a href="https://doi.org/10.3233/JIFS-179865" target="_blank"><em>Annotador: a Temporal Tagger for Spanish</em></a>. Journal of Intelligent &amp; Fuzzy Systems 39 (2020) 1979-1991, (2) doi:10.3233/JIFS-179865.</p></blockquote>
